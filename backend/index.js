@@ -2,6 +2,7 @@ const express = require('express')
 const dotenv = require('dotenv')
 const app = express()
 const productRoutes = require('./routes/ProductRoutes')
+const paymentRoutes = require("./routes/PaymentRoutes");
 const connectDB = require('./config/db');
 const cors = require("cors");
 app.use(cors());
@@ -22,6 +23,9 @@ app.get('/', (req, res) => {
 })
 app.use('/api', productRoutes);
 // -> /api/productRoutes
+
+app.use("/api/payment", paymentRoutes);
+//  -> /api/payment
 
 app.listen(PORT, () => {
     console.log(`product app listening on port ${PORT}`)

@@ -27,3 +27,9 @@ export const updateProduct = async (id, productData) => {
 	const res = await axios.put(`${API_URL}${id}`, productData);
 	return res.data;
 };
+
+// ✅ Get Single Product by ID (for Product Details Page)
+export const getProductById = async (id) => {
+	const res = await axios.get(`${API_URL}${id}`);
+	return res.data;
+};
