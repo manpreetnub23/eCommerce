@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { ShoppingCart, User } from "lucide-react";
 
 export default function NavBar() {
 	const navigate = useNavigate();
@@ -13,48 +14,64 @@ export default function NavBar() {
 	}, []);
 
 	return (
-		<nav className="bg-gray-800/80 backdrop-blur-md fixed w-full z-10 top-0 shadow-md">
+		<nav className="bg-white fixed w-full z-10 top-0 shadow-md">
 			<div className="container mx-auto flex items-center justify-between px-6 py-4">
+				{/* Logo */}
 				<div
-					className="text-2xl font-bold flex items-center gap-2 hover:cursor-pointer"
+					className="text-2xl font-bold text-black flex items-center gap-2 cursor-pointer"
 					onClick={() => navigate("/")}
 				>
-					<span role="img" aria-label="cart">
-						🌚
-					</span>
-					<h1>Tough Day</h1>
+					🌚 TOUGH DAY
 				</div>
-				<div className="flex items-center gap-6">
-					<Button
-						variant="ghost"
-						className="text-white hover:bg-gray-600 hover:text-white transition-colors duration-300"
+
+				{/* Nav Links */}
+				<div className="flex items-center gap-8 text-gray-800">
+					<button
+						className="hover:text-black transition hover:font-semibold hover:cursor-pointer"
 						onClick={() => navigate("/")}
 					>
 						Home
-					</Button>
-					<Button
-						variant="ghost"
-						className="text-white hover:bg-blue-600 hover:text-white transition-colors duration-300"
-						onClick={() => navigate("/admin-dashboard")}
+					</button>
+					<button
+						className="hover:text-black transition hover:font-semibold hover:cursor-pointer"
+						onClick={() => navigate("/men")}
 					>
-						Admin
-					</Button>
-					<Button
-						variant="ghost"
-						className="text-white hover:bg-gray-600 hover:text-white transition-colors duration-300"
+						Men
+					</button>
+					<button
+						className="hover:text-black transition hover:font-semibold hover:cursor-pointer"
+						onClick={() => navigate("/women")}
+					>
+						Women
+					</button>
+					<button
+						className="hover:text-black transition hover:font-semibold hover:cursor-pointer"
+						onClick={() => navigate("/contact")}
 					>
 						Contact
-					</Button>
+					</button>
+				</div>
 
-					{/* Cart Button with Count */}
+				{/* Icons */}
+				<div className="flex items-center gap-4">
+					{/* Admin Button */}
 					<Button
 						variant="ghost"
-						className="relative text-white hover:bg-green-600 hover:text-white transition-colors duration-300"
-						onClick={() => navigate("/cart")}
+						onClick={() => navigate("/admin-dashboard")}
+						className="rounded-full bg-gray-100 p-2 hover:bg-gray-200 hover:cursor-pointer"
 					>
-						Cart
+						<User size={20} />
+					</Button>
+
+					{/* Cart Button */}
+					<Button
+						variant="ghost"
+						onClick={() => navigate("/cart")}
+						className="relative rounded-full  p-2 hover:bg-gray-200 hover:cursor-pointer"
+					>
+						<ShoppingCart size={20} />
 						{cartCount > 0 && (
-							<span className="absolute -top-2 -right-2 bg-red-600 rounded-full w-5 h-5 text-xs flex items-center justify-center">
+							<span className="absolute -top-1 -right-1 bg-black text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">
 								{cartCount}
 							</span>
 						)}

@@ -19,13 +19,13 @@ export default function ProductDetails() {
 		const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
 		const existingItemIndex = storedCart.findIndex(
 			(item) => item.name === product.name
-		); // Use unique field here
+		);
 
 		if (existingItemIndex !== -1) {
 			storedCart[existingItemIndex].quantity += 1;
 		} else {
 			storedCart.push({
-				id: product.id, // Use id if available
+				id: product.id,
 				name: product.name,
 				price: Number(product.price),
 				quantity: 1,
@@ -44,27 +44,52 @@ export default function ProductDetails() {
 	};
 
 	if (!product)
-		return <div className="text-white text-center pt-32">Loading...</div>;
+		return <div className="text-black text-center pt-32">Loading...</div>;
 
 	return (
-		<div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white">
+		<div className="min-h-screen bg-[#f8f8f8] text-black">
 			<NavBar />
 			<div className="container mx-auto pt-32 pb-16 flex justify-center items-center">
-				<div className="bg-white/10 backdrop-blur-md p-10 rounded-2xl border border-white/20 shadow-2xl max-w-md w-full text-center space-y-6">
-					<h1 className="text-4xl font-extrabold">{product.name}</h1>
-					<p className="text-2xl text-green-400">₹{product.price}</p>
-					<p className="text-lg">{product.description}</p>
-					<p className="italic text-gray-300">{product.category}</p>
-					<div className="flex gap-4">
-						<Button className="flex-1" onClick={handleAddToCart}>
-							Add to Cart
-						</Button>
-						<Button
-							className="flex-1 bg-white text-black hover:bg-gray-300"
-							onClick={handleBuyNow}
-						>
-							Buy Now
-						</Button>
+				<div className="bg-white rounded-3xl border border-gray-300 shadow-lg w-[65%] flex overflow-hidden">
+					{/* Left Image */}
+					<img
+						src={`https://picsum.photos/seed/${product._id}/400/400`}
+						alt={product.name}
+						className="w-1/2 object-cover"
+					/>
+
+					{/* Right Content */}
+					<div className="p-10 flex flex-col justify-center space-y-4 w-1/2">
+						<h1 className="text-3xl font-bold">{product.name}</h1>
+						<p className="text-xl font-semibold">₹{product.price}</p>
+						<p className="text-gray-600">{product.description}</p>
+						<p className="italic text-gray-500">{product.category}</p>
+						{/* New About Section */}
+						<div className="text-sm text-gray-500 mt-2">
+							<strong>About:</strong>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+								vulputate odio at sapien tincidunt, non pulvinar neque tempus.
+							</p>
+							<p>
+								Nunc porta, mauris non tincidunt dapibus, ligula augue fermentum
+								velit, nec bibendum nisi erat ac enim.
+							</p>
+						</div>
+						<div className="flex gap-4 mt-4">
+							<Button
+								className="flex-1 bg-black text-white rounded-full hover:bg-gray-800"
+								onClick={handleAddToCart}
+							>
+								Add to Cart
+							</Button>
+							<Button
+								className="flex-1 bg-white border border-black text-black rounded-full hover:bg-gray-200"
+								onClick={handleBuyNow}
+							>
+								Buy Now
+							</Button>
+						</div>
 					</div>
 				</div>
 			</div>
