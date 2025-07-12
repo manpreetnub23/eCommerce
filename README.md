@@ -1,137 +1,63 @@
-# # 🛒 eCommerce Web Application
+# 🛒 Admin eCommerce Backend
 
-A full-stack eCommerce platform with user and admin support, built using **MERN stack** with payment gateway integration.
+A backend-only admin system for manually managing products and orders.
 
----
+## ✨ Core Features
 
-## 🔧 Tech Stack
+- Admin-only login using hardcoded credentials (from `.env`)
+- Product creation and order entry via protected routes
+- No user registration or advanced auth mechanisms
 
-### Frontend:
-- React.js
-- React Router DOM
-- Context API (if used)
-- Tailwind CSS / CSS (as applicable)
-- LocalStorage for cart
-- Razorpay Integration
+## 🛠️ Tech Stack
 
-### Backend:
 - Node.js
 - Express.js
-- MongoDB
-- Mongoose
-- REST APIs
-- Razorpay (Payment Gateway)
-- dotenv for env management
+- MongoDB (with Mongoose ODM)
+- dotenv for admin credential config
 
----
+## 📂 Project Structure
 
-## 📁 Project Structure
-
-eCommerce/
-├── backend/
-│ ├── config/
-│ │ └── db.js
-│ ├── controllers/
-│ │ ├── PaymentController.js
-│ │ └── ProductController.js
-│ ├── models/
-│ │ └── ProductModel.js
-│ ├── routes/
-│ │ ├── PaymentRoutes.js
-│ │ └── ProductRoutes.js
-│ ├── .env
-│ ├── index.js
-│ └── package.json
-│
-├── frontend/
-│ ├── public/
-│ ├── src/
-│ │ ├── api/
-│ │ │ ├── paymentApi.js
-│ │ │ └── productApi.js
-│ │ ├── components/
-│ │ │ └── ui/
-│ │ │ └── NavBar.jsx
-│ │ ├── lib/
-│ │ ├── pages/
-│ │ │ ├── AdminDashboard.jsx
-│ │ │ ├── AdminLogin.jsx
-│ │ │ ├── CartPage.jsx
-│ │ │ ├── HomePage.jsx
-│ │ │ └── ProductDetails.jsx
-│ │ ├── utils/
-│ │ │ └── razorpay.js
-│ │ ├── App.jsx
-│ │ ├── index.css
-│ │ └── main.jsx
-│ ├── components.json
-│ ├── eslint.config.js
-│ └── package.json
-│
-├── jsconfig.json
-└── README.md
+/eCommerce
+├── server.js
+├── config/
+│ └── db.js
+├── controllers/
+│ ├── authController.js (admin login logic)
+│ ├── productController.js
+│ └── orderController.js
+├── models/
+│ ├── Admin.js
+│ ├── Product.js
+│ └── Order.js
+├── routes/
+│ ├── auth.js
+│ ├── product.js
+│ └── order.js
+└── .env
 
 
----
+## 🚀 Setup & Run
 
-## ⚙️ Installation & Setup
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/manpreetnub23/eCommerce.git
 
-### 1. Clone the repository
-
-```bash
-2. Backend Setup
-
-
-git clone https://github.com/manpreetnub23/eCommerce.git
 cd eCommerce
-
-cd backend
 npm install
 
-# Create a .env file
-touch .env
-
-Add the following to .env:
+ADMIN_USERNAME=youradmin
+ADMIN_PASSWORD=yourpassword
+MONGO_URI=your_mongo_connection
 PORT=5000
-MONGO_URI=your_mongo_connection_string
-RAZORPAY_KEY_ID=your_razorpay_key_id
-RAZORPAY_KEY_SECRET=your_razorpay_secret
-
-Then run:
 
 npm start
 
-3. Frontend Setup
+Access endpoints via Postman or browser:
 
-cd ../frontend
-npm install
-npm start
+POST /login – admin login
 
-📦 Features
-🛍️ Product listing
+POST /add-product
 
-🔍 Product details
+POST /add-order
 
-🛒 Add to cart (stored in localStorage)
-
-💳 Checkout & Razorpay payment
-
-🧑 Admin dashboard (Login, Product Management)
-
-🔐 Basic route protection via frontend logic
-
-📌 To-Do / Future Scope
-Add authentication with JWT or sessions
-
-Role-based access (Admin vs User)
-
-Orders DB and order history
-
-Real user authentication for login/signup
-
-Deploy on Vercel (frontend) & Render/Heroku (backend)
-
-🙋‍♂️ Author
-Name: Manpreet Singh
-
-GitHub: @manpreetnub23
+GET /products
